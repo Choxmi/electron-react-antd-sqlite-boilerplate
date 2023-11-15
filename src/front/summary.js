@@ -1,19 +1,18 @@
 import { Button } from 'antd';
 import * as React from 'react';
-import axios from 'axios';
+import { GET } from './constants';
+import PageLayout from './page_layout';
 
-export const AppHome = () => {
+export const Summary = () => {
     const [num, setNum] = React.useState(0);
     const [genre, setGenre] = React.useState([]);
 
     const btnClick = () => {
-        fetch('http://localhost:3001/')
-            .then(res => res.json())
-            .then(console.log);
+        GET('/users').then(out=>console.log(out))
     }
 
-    return <div>
+    return <PageLayout>
         <h1>APP HOME</h1>
         <Button onClick={btnClick}>BTN</Button>
-    </div>
+    </PageLayout>
 }

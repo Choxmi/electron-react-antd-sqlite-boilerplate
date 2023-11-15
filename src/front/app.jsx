@@ -1,15 +1,20 @@
 import { ConfigProvider, Menu } from 'antd';
 import * as React from 'react';
 import { createRoot } from 'react-dom/client';
-import { side_items } from './constants';
-import { AppHome } from './home';
+import { FOOTER_HEIGHT, HEADER_HEIGHT, side_items, } from './constants';
+import { Summary } from './summary';
+import DailyRecords from './daily_records';
 
 const Header = ({ menu, setMenu }) => {
-    return <Menu onClick={(e) => setMenu(e.key)} selectedKeys={[menu]} mode="horizontal" items={side_items} />;
+    return <Menu onClick={(e) => setMenu(e.key)} selectedKeys={[menu]} mode="horizontal" items={side_items} style={{ height: HEADER_HEIGHT }} />;
+}
+
+const Footer = () => {
+    return <div style={{ height: FOOTER_HEIGHT, display: 'flex', justifyContent: 'center', alignItems: 'center' }}>Powered By SatLabs</div>;
 }
 
 const App = () => {
-    const [menu, setMenu] = React.useState();
+    const [menu, setMenu] = React.useState('daily');
     return <ConfigProvider
         theme={{
             token: {
@@ -18,7 +23,11 @@ const App = () => {
         }}
     >
         <Header menu={menu} setMenu={setMenu} />
-        {menu == 'summary' ? <AppHome /> : null}
+        <div style={{ display: 'flex', flexDirection: 'column', justifyContent: 'space-between', height: `calc(100vh - ${(HEADER_HEIGHT + FOOTER_HEIGHT)}px)` }}>
+            {menu == 'summary' ? <Summary /> : null}
+            {menu == 'daily' ? <DailyRecords /> : null}
+        </div>
+        <Footer />
     </ConfigProvider>
 }
 
