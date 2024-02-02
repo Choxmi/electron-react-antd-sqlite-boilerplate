@@ -58,17 +58,25 @@ app.get('/users', function (req, res) {
 });
 
 app.get('/daily_records/:date', function (req, res) {
-    console.log(req.params.date);
-    let sql = `SELECT * FROM users`;
-    db.all(sql, [], (err, rows) => {
-        if (err) {
-            throw err;
-        }
-        res.status(200).send({
-            message: "Users",
-            data: rows
+    const date = req.params.date?.toString().split('-');
+    if (date && date.length == 3) {
+        let sql = `SELECT a.*, b.grossWeight FROM users a LEFT JOIN transactions b ON b.year = ? AND b.month = ? AND b.date = ? AND b.id = a.id`;
+        console.log(date);
+        db.all(sql, [date[0],date[1],date[2]], (err, rows) => {
+            if (err) {
+                throw err;
+            }
+            res.status(200).send({
+                message: "Users",
+                data: rows
+            });
         });
-    });
+    } else {
+        res.status(500).send({
+            message: "Users",
+            data: null
+        });
+    }
 });
 
 app.listen(3001);

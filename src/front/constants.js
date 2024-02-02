@@ -12,6 +12,11 @@ export const side_items = [
         key: 'daily',
         icon: <MailOutlined />,
     },
+    {
+        label: 'Customers',
+        key: 'customers',
+        icon: <MailOutlined />,
+    },
 ];
 
 export const BASE_URL = 'http://localhost:3001';

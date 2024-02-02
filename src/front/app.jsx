@@ -4,6 +4,7 @@ import { createRoot } from 'react-dom/client';
 import { FOOTER_HEIGHT, HEADER_HEIGHT, side_items, } from './constants';
 import { Summary } from './summary';
 import DailyRecords from './daily_records';
+import Customers from './customers';
 
 const Header = ({ menu, setMenu }) => {
     return <Menu onClick={(e) => setMenu(e.key)} selectedKeys={[menu]} mode="horizontal" items={side_items} style={{ height: HEADER_HEIGHT }} />;
@@ -18,7 +19,7 @@ const App = () => {
     return <ConfigProvider
         theme={{
             token: {
-                fontFamily: "Figtree",
+                fontFamily: 'Segoe UI',
             },
         }}
     >
@@ -26,6 +27,7 @@ const App = () => {
         <div style={{ display: 'flex', flexDirection: 'column', justifyContent: 'space-between', height: `calc(100vh - ${(HEADER_HEIGHT + FOOTER_HEIGHT)}px)` }}>
             {menu == 'summary' ? <Summary /> : null}
             {menu == 'daily' ? <DailyRecords /> : null}
+            {menu == 'customers' ? <Customers /> : null}
         </div>
         <Footer />
     </ConfigProvider>
