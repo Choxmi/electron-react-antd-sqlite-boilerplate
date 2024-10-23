@@ -5,6 +5,8 @@ import { FOOTER_HEIGHT, HEADER_HEIGHT, side_items, } from './constants';
 import { Summary } from './summary';
 import DailyRecords from './daily_records';
 import Customers from './customers';
+import PaySheets from './paysheets';
+import { MonthlySummary } from './monthly_summary';
 
 const Header = ({ menu, setMenu }) => {
     return <Menu onClick={(e) => setMenu(e.key)} selectedKeys={[menu]} mode="horizontal" items={side_items} style={{ height: HEADER_HEIGHT }} />;
@@ -28,6 +30,8 @@ const App = () => {
             {menu == 'summary' ? <Summary /> : null}
             {menu == 'daily' ? <DailyRecords /> : null}
             {menu == 'customers' ? <Customers /> : null}
+            {menu == 'paysheets' ? <PaySheets /> : null}
+            {menu == 'monthly' ? <MonthlySummary /> : null}
         </div>
         <Footer />
     </ConfigProvider>

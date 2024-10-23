@@ -1,21 +1,31 @@
 import * as React from 'react';
-import { MailOutlined } from '@ant-design/icons';
+import { MailOutlined, DashboardOutlined, FormOutlined, UserOutlined, DollarOutlined, BookOutlined  } from '@ant-design/icons';
 
 export const side_items = [
     {
         label: 'Summary',
         key: 'summary',
-        icon: <MailOutlined />,
+        icon: <DashboardOutlined />,
     },
     {
         label: 'Daily Records',
         key: 'daily',
-        icon: <MailOutlined />,
+        icon: <FormOutlined />,
     },
     {
         label: 'Customers',
         key: 'customers',
-        icon: <MailOutlined />,
+        icon: <UserOutlined />,
+    },
+    {
+        label: 'Pay Sheets',
+        key: 'paysheets',
+        icon: <DollarOutlined />,
+    },
+    {
+        label: 'Monthly Summary',
+        key: 'monthly',
+        icon: <BookOutlined />,
     },
 ];
 
